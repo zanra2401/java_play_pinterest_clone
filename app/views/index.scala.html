@@ -1,0 +1,31 @@
+@(images: List[models.Image.ImageData])
+@import models.Image.ImageData
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/home.css")">
+  <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/main.css")">
+  <title>Document</title>
+</head>
+<body>
+  <main>
+      <div class="masonry">
+        @for(image <- images) {
+          <a href="/detailGambar/@image.getId()" class="masonry-item"><img src="@routes.Assets.versioned(image.getFilePath())" alt="postingan"></a>
+        }
+      </div>
+  </main>
+
+  <footer>
+    <a href="/" class="home">
+      <img src="@routes.Assets.versioned("images/home_white.svg")" alt="">
+    </a>
+
+    <a href="profile" class="profile">
+      <img src="@routes.Assets.versioned("images/user.svg")" alt="">
+    </a>
+  </footer>
+</body>
+</html>

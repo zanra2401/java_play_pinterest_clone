@@ -1,0 +1,73 @@
+@(imageDetail: models.Image.ImageDetail, telahLike: Boolean, pp: String, sudahKomen: Boolean)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Image</title>
+    <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/detail.css")">
+    <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/home.css")">
+</head>
+<body>
+  <main>
+    <div class="image-detail">
+      <div class="uploader">
+          <img id="pp-img" class="pp-img" src="@routes.Assets.versioned(if(pp == null) "images/pp.jpeg" else pp)" alt="Profile Picture" onclick="openChangePpModal()">
+          <strong>@imageDetail.getUploader()</strong>
+      </div>
+  
+      <img src="@routes.Assets.versioned(imageDetail.getImagePath())" alt="Uploaded Image" style="width:100%; border-radius: 8px;" />
+  
+      @if(telahLike) {
+        <form class="likes" action="/unlike/@imageDetail.getImageId()" method="GET" >
+          <button type="submit" style="background:none; border:none;" class="like-btn">
+            <img style="width: 24px; height: 24px;" src="@routes.Assets.versioned("images/heart.png")" alt="like">
+          </button>
+
+          <span class="like-m">@imageDetail.getLikeCount()</span>
+        </form>
+      } else {
+        <form class="likes" action="/like/@imageDetail.getImageId()" method="GET" >
+          <button type="submit" style="background:none; border:none;" class="like-btn">
+            <img src="@routes.Assets.versioned("images/heart.svg")" alt="like">
+          </button>
+
+          <span class="like-m">@imageDetail.getLikeCount()</span>
+      </form>
+        
+      }
+      
+  
+      <div class="comments">
+          <h4>Comments:</h4>
+          @if(imageDetail.getComments() != null) {
+              <span>@imageDetail.getComments()</span>
+          } else {
+              <span>No comments yet.</span>
+          }
+      </div>
+      @if(sudahKomen == false) {
+        <div>
+          <form action="/komentar" method="post">
+            <input class="komen-field" type="text" name="content" placeholder="komentar">
+            <input class="komen-field" type="text" name="imageId" placeholder="" value="@imageDetail.getImageId()" hidden>
+            <button class="tombol-kirim">Kirim</button>
+          </form>
+        </div>
+      }
+  </div>
+  </main>
+
+    <footer>
+      <a href="/" class="home">
+        <img src="@routes.Assets.versioned("images/home_white.svg")" alt="">
+      </a>
+
+      <a href="/profile" class="profile">
+        <img src="@routes.Assets.versioned("images/user.svg")" alt="">
+      </a>
+  </footer>
+</body>
+</html>

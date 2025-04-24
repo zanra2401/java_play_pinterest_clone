@@ -1,0 +1,160 @@
+.profile {
+    background-color: rgb(46, 28, 105);
+    
+}
+
+.home {
+  background: #fff;
+}
+
+.profile-container {
+    height: 100px;
+    padding-top: 25px;
+    width: 100%;
+    display: flex;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.profile-img-container {
+    width: 100px;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    background-color: gray;
+    overflow: hidden;
+    box-shadow: 0px 0px 2px 0.8px gray;
+}
+
+.home:hover {
+    background: rgb(225, 225, 225);
+    cursor: pointer;
+}
+
+.status {
+    font-family: sans-serif;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    gap: 10px;
+}
+
+.status > a {
+    text-decoration: none;
+}
+
+.upload_foto {
+    aspect-ratio: 1/1;
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pp-img {
+  object-fit: cover;
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+
+.upload_foto > img {
+    max-width: 60px;
+}
+
+.upload-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+    z-index: 1000;
+    font-family: sans-serif;
+  }
+  
+  .upload-modal > form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .upload-modal input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .upload-modal button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .upload-modal button:hover {
+    background-color: #0056b3;
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+  }
+  
+  .upload-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+    z-index: 1000;
+  }
+  
+  .edit-nama {
+    background-color: #007bff; 
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    padding:5px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .edit-nama:hover {
+    cursor: pointer;
+  }
+
+  .logout {
+    background-color: #ff0004; 
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    padding:5px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+  }

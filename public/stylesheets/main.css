@@ -1,0 +1,99 @@
+body {
+    margin: 0px;
+    overflow: hidden;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+footer {
+    height: 100vh;      /* sidebar biasanya setinggi viewport */
+    width: 50px;       /* atur lebar sesuai kebutuhan */
+    max-width: none;    /* hapus batas maksimum lebar */
+    display: flex;
+    flex-direction: column; /* konten vertikal */
+    position: fixed;    /* agar tetap di tempat saat scroll */
+    left: 0;            /* posisikan di kiri */
+    top: 0;
+    background-color: #f8f9fa; /* warna latar opsional */
+    border-right: 1px solid #ccc; /* opsional: garis pemisah */
+}
+
+
+.home, .profile {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.masonry {
+    column-count: 5;
+    column-gap: 10px; 
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+.masonry-item {
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    transition: ease-in-out 0.3s;
+}
+
+.masonry-item > img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0px;
+    box-sizing: border-box;
+    padding: 0px;
+}
+
+.masonry-item:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+
+
+.nav-active {
+    width: 100%;
+    height: 100%;
+}
+
+.pp-img {
+    object-fit: cover;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    position: relative;
+    background: #fff;
+    padding: 16px;
+    font-family: 'Segoe UI', sans-serif;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    body {
+        
+    padding-left: 20px;
+    padding-right: 0px;
+    }
+    .masonry {
+        column-count: 2;
+    }
+  }

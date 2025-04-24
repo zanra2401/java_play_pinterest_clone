@@ -1,0 +1,120 @@
+@(images: List[models.Image.ImageData], username: String, pp: String)
+@import models.Image.ImageData
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/main.css")">
+  <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/profile.css")">
+  <title>Profile</title>
+</head>
+<body>
+  <main>
+    <div class="profile-container">
+      <div class="profile-img-container">
+          <img id="pp-img" class="pp-img" src="@routes.Assets.versioned(if(pp == null) "images/pp.jpeg" else pp)" alt="Profile Picture" onclick="openChangePpModal()">
+          <form action="/editFoto" method="post" enctype="multipart/form-data" style="margin-top: 10px;">
+            <input type="file" name="fotoBaru" required id="fotoBaru" style="display: none;">
+            <button type="submit" id="submitPp" style="display: none;">Edit Foto</button>
+          </form>
+      </div>
+  
+      <div class="status">
+          <div id="usernameDisplay">@username</div>
+          <button class="edit-nama" onclick="openEditNameModal()">Edit Nama</button>
+          <a href="/logout" class="logout">Logout</a>
+      </div>
+  </div>
+
+    <div class="masonry">
+      <button onclick="openModal()" class="upload_foto masonry-item">
+        <img src="@routes.Assets.versioned("images/plus.svg")" alt="">
+      </button>
+
+      @for(image <- images) {
+        <div class="masonry-item" style="position: relative;">
+          <img src="@routes.Assets.versioned(image.getFilePath())" alt="postingan" style="width: 100%; height: auto;">
+          <form action="/deleteGambar" method="POST" style="position: absolute; top: 5px; right: 5px;">
+            <input type="text" name="id" value="@image.getId()" hidden>
+            <button type="submit" style="background-color: red; color: white; border: none; border-radius: 8px; padding: 10px; cursor: pointer;">
+              <img src="@routes.Assets.versioned("images/trash-2.svg")" alt="trash">
+            </button>
+          </form>
+        </div>
+      }
+    </div>
+
+    <!-- Modal Upload Foto -->
+    <div class="modal-overlay" id="modalOverlay" style="display: none;" onclick="closeModal()"></div>
+    <div class="upload-modal" id="uploadModal" style="display: none;">
+      <form action="/uploadGambar" method="post" enctype="multipart/form-data">
+        <input type="file" name="image">
+        <button type="submit">Upload</button>
+        <button type="button" onclick="closeModal()">Tutup</button>
+      </form>
+    </div>
+
+    <!-- Modal Edit Nama -->
+    <div class="modal-overlay" id="editNameOverlay" style="display: none;" onclick="closeEditNameModal()"></div>
+    <div class="upload-modal" id="editNameModal" style="display: none;">
+      <form action="/editNama" method="post">
+        <input type="text" name="namaBaru" placeholder="Masukkan nama baru" required>
+        <button type="submit">Simpan</button>
+        <button type="button" onclick="closeEditNameModal()">Tutup</button>
+      </form>
+    </div>
+
+    <!-- Modal Change Profile Picture -->
+    <div class="modal-overlay" id="changePpOverlay" style="display: none;" onclick="closeChangePpModal()"></div>
+    <div class="upload-modal" id="changePpModal" style="display: none;">
+        <form action="/editFoto" method="post" enctype="multipart/form-data">
+            <input type="file" name="fotoBaru" id="fotoBaru" required>
+            <button type="submit">Ganti Foto Profil</button>
+            <button type="button" onclick="closeChangePpModal()">Tutup</button>
+        </form>
+    </div>
+  </main>
+
+  <footer>
+    <a href="/" class="home">
+      <img src="@routes.Assets.versioned("images/home.svg")" alt="">
+    </a>
+    <a href="profile" class="profile">
+      <img src="@routes.Assets.versioned("images/user_white.svg")" alt="">
+    </a>
+  </footer>
+
+  <script>
+    function openChangePpModal() {
+        document.getElementById("changePpModal").style.display = "block";
+        document.getElementById("changePpOverlay").style.display = "block";
+    }
+
+    function closeChangePpModal() {
+        document.getElementById("changePpModal").style.display = "none";
+        document.getElementById("changePpOverlay").style.display = "none";
+    }
+
+    function openModal() {
+      document.getElementById("uploadModal").style.display = "block";
+      document.getElementById("modalOverlay").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("uploadModal").style.display = "none";
+      document.getElementById("modalOverlay").style.display = "none";
+    }
+
+    function openEditNameModal() {
+      document.getElementById("editNameModal").style.display = "block";
+      document.getElementById("editNameOverlay").style.display = "block";
+    }
+
+    function closeEditNameModal() {
+      document.getElementById("editNameModal").style.display = "none";
+      document.getElementById("editNameOverlay").style.display = "none";
+    }
+  </script>
+</body>
+</html>

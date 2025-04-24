@@ -1,0 +1,40 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                           controllers.Pinterest.index(request: Request)
+
+
+GET     /profile                    controllers.Pinterest.profile(request: Request)
+
+GET     /daftar                     controllers.Pinterest.daftarFe()
+
+GET     /login                      controllers.Pinterest.loginFe(request: Request)
+
+GET     /detailGambar/:id           controllers.Pinterest.detailGambar(id: Long, request: Request)
+
+POST    /login                      controllers.Pinterest.login(request: Request)
+
+POST    /uploadGambar               controllers.Pinterest.uploadGambar(request: Request)
+
+POST    /deleteGambar               controllers.Pinterest.deleteGambar(request: Request)
+
+POST   /editFoto      controllers.Pinterest.editFoto(request: Request)
+
+POST    /editNama          controllers.Pinterest.editNama(request: Request)
+
+POST    /daftar                     controllers.Pinterest.daftar(request: Request)
+
+POST    /komentar                   controllers.Pinterest.komen(request: Request)
+
+GET   /like/:imageId                controllers.Pinterest.likeImage(imageId: Long, request: Request)
+
+GET   /unlike/:imageId                controllers.Pinterest.unlike(imageId: Long, request: Request)
+
+GET     /logout                       controllers.Pinterest.logout(request: Request)     
+
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
